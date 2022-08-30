@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int equation(int x){
+    return (x*x*x-x*x+2);
+}
+int main(){
+    int a, b, c;
+    scanf("%d%d", &a, &b);
+    int fa, fb, fc, prev=0, curr=0;
+    do{
+        fa=equation(a);
+        fb=equation(b);
+        if(fa==0){
+            printf("%d\n", a);
+            break;
+        }
+        else if(fb==0){
+            printf("%d\n", b);
+            break;
+        }
+        else if(fa*fb<0){
+            c=(a+b)/2;
+            fc=equation(c);
+            if(fa*fc<0){
+                prev=fb;
+                b=c;
+            }
+            else{
+                prev=fa;
+                a=c;
+            }
+            curr=fc;
+    }
+        else
+            printf("invalid input\n");
+    } while(abs(prev-curr)>=0.00001);
+    return 0;
+}
