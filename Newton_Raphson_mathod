@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+float f(float x)
+{
+    return x*x*x - x*x - 2;
+}
+float derivfunc(float x)
+{
+    return 3*x*x-2*x;
+}
+float raphson(float a,float b)
+{
+    float fa,fb,x,h,err;
+    int iter,i;
+    up1:
+    printf("enter lower limit a:");
+    scanf("%f",&a);
+    printf("enter upper limit b:");
+    scanf("%f",&b);
+    fa=f(a);
+    fb=f(b);
+     h=f(x)/derivfunc(x);
+    while (abs(h) >= err)
+    {
+    if(fa*fb<0)
+    {
+        up:
+        printf("enter the value of x which should lie between a and b:");
+        scanf("%f",&x);
+
+        if(x>=a && x<=b)
+        {
+            printf("enter no. of iteration:");
+            scanf("%d",&iter);
+            printf("enter error:");
+            scanf("%d",&err);
+            for (i=0;i<iter;i++)
+            {
+                  h=f(x)/derivfunc(x);
+                  x=x-h;
+                  printf("iteration %d   root is    %f\n",i,x);
+                  }
+                  return 0;
+        }
+        else
+        {
+            printf("invalid x.");
+            goto up;
+        }
+    }
+    else{
+        printf("invalid assumptions.");
+        goto up1;
+    }
+    }
+}
+int main()
+{
+   printf("//Ananya_Gupta _SEC E_2016630_BTECH CSE_2//\n");
+    float a,b;
+    raphson(a,b);
+}
+
